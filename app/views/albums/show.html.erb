@@ -1,0 +1,35 @@
+<div class="container">
+    <h3><%= link_to "Add Photos in Album", new_album_photo_path(@album.id)%></h3>
+    <% @photos.each do |photo|%>
+    <div class="col-md-6">
+      <h4><%= photo.name %> |
+      <%= link_to "Delete Photo" ,album_photo_path(@album.id, photo),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }%> | <%= link_to "Add cover photo", add_cover_photo_album_photo_path(@album, photo), method: :post %> </h4>
+      <%= image_tag("#{photo.image}" , :size => "260x180")%>     
+      <p>
+        <%= link_to "Add comments on Photo",  commentable_area_comments_path(photo_id:photo), remote: true %>
+        <div id="photo_comment_<%= photo.id %>"></div>
+      </p>
+       <input type="button" value="show comments" onclick="msg(<%= photo.id %>)"> 
+       <div class="hidetext" id="album_<%= photo.id %>">
+        <p>
+          <% photo.comments.each do |comment| %>
+            <strong>Comment:</strong>
+            <%= comment.content %><br>
+          <% end %>
+        </p> 
+      </div>   
+      </div>        
+    <% end %>
+</div>
+<script type="text/javascript">
+  $("#photo_comment_").click(function(){
+    $("div").show();
+  });
+  $(".hidetext").hide();
+  function msg(id) {
+      
+          $('#album_'+id).toggle();
+  }
+</script>

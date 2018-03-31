@@ -1,0 +1,21 @@
+<div class="container">
+	<div class=".col-md-6 col-md-offset-5">
+	  <h1>Edit article</h1>
+	  <%= form_for @album do |form| %>
+        <p>
+          <%= form.label :name %><br>
+          <%= form.text_field :name %>
+        </p>
+ 
+        <p>
+          <%= form.label :description %><br>
+          <%= form.text_area :description %>
+        </p>
+ 
+        <p>
+           <%= form.submit %>
+        </p>
+        <%= link_to "New Album", new_album_path %>
+    <% end %>
+	</div>
+</div>

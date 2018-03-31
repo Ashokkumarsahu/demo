@@ -1,0 +1,8 @@
+<% if (params[:album_id]).present? %> 
+  $('#album_comment_<%= @album.id %>').html("");
+  $('#album_comment_<%= @album.id %>').html('<%= escape_javascript( render :partial => "form") %>');
+ 
+<% elsif (params[:photo_id]).present? %>
+  $('#photo_comment_<%= @photo.id %>').html("");
+  $('#photo_comment_<%= @photo.id %>').html('<%= escape_javascript( render :partial => "form") %>');
+<% end %>
